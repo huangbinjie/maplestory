@@ -1,0 +1,17 @@
+{
+  "name": "maplestory",
+  "version": "1.0.0",
+  "description": "a small game respect for maplestory",
+  "main": "\"\"",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "maplestory"
+  ],
+  "author": "corol",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^2.6.2"
+  }
+}

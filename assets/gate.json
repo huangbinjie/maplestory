@@ -1,0 +1,76 @@
+{"frames": [
+
+{
+	"filename": "gate0.png",
+	"frame": {"x":2,"y":690,"w":101,"h":142},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":101,"h":142},
+	"sourceSize": {"w":101,"h":142}
+},
+{
+	"filename": "gate1.png",
+	"frame": {"x":2,"y":970,"w":99,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":99,"h":138},
+	"sourceSize": {"w":99,"h":138}
+},
+{
+	"filename": "gate2.png",
+	"frame": {"x":2,"y":417,"w":103,"h":131},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":103,"h":131},
+	"sourceSize": {"w":103,"h":131}
+},
+{
+	"filename": "gate3.png",
+	"frame": {"x":2,"y":282,"w":103,"h":133},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":103,"h":133},
+	"sourceSize": {"w":103,"h":133}
+},
+{
+	"filename": "gate4.png",
+	"frame": {"x":2,"y":142,"w":103,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":103,"h":138},
+	"sourceSize": {"w":103,"h":138}
+},
+{
+	"filename": "gate5.png",
+	"frame": {"x":2,"y":2,"w":104,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":104,"h":138},
+	"sourceSize": {"w":104,"h":138}
+},
+{
+	"filename": "gate6.png",
+	"frame": {"x":2,"y":834,"w":101,"h":134},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":101,"h":134},
+	"sourceSize": {"w":101,"h":134}
+},
+{
+	"filename": "gate7.png",
+	"frame": {"x":2,"y":550,"w":102,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":102,"h":138},
+	"sourceSize": {"w":102,"h":138}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "gate.png",
+	"format": "RGBA8888",
+	"size": {"w":108,"h":1110},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:b2ce4910db0faa6e3f38becb6c1e573e:8b7eb43247c68b9de74a3832ff88e165:d4152bb21fb333e85be9d45e9d144416$"
+}
+}
