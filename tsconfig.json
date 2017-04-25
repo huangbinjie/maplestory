@@ -1,7 +1,13 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"strict": true
+		"strict": true,
+		"target": "es5",
+		"skipLibCheck": true,
+		"lib": [
+			"dom",
+			"es2015"
+		]
 	},
 	"exclude": [
 		"node_modules"

@@ -1,6 +1,6 @@
 import * as Phaser from "phaser"
 
-class Ledge extends Phaser.Sprite {
+export default class Sky extends Phaser.Sprite {
 	constructor(game: Phaser.Game, x: number, y: number) {
 		super(game, x, y, "sky")
 		this.width = 1280

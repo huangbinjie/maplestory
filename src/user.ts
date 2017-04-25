@@ -1,14 +1,15 @@
 import * as Phaser from "phaser"
 
-class User extends Phaser.Sprite {
+export default class User extends Phaser.Sprite {
 	namestyle = {
 		font: "bold 12px Arial",
 		fill: "#fff",
 		boundsAlignH: "center",
 		boundsAlignV: "middle"
 	}
-	constructor(game: Phaser.Game, x: number, y: number, name: string) {
+	constructor(game: Phaser.Game, x: number, y: number, name: string, public id: number) {
 		super(game, x, y, "user")
+		game.physics.enable(this, Phaser.Physics.ARCADE)
 		// 人物描点
 		this.anchor.setTo(.5, 1)
 		// 人物方块属性
@@ -51,6 +52,7 @@ class User extends Phaser.Sprite {
 		this.animations.play('stand')
 	}
 	jump() {
+		this.body.velocity.y = -300;
 		this.animations.play('jump')
 	}
 }
