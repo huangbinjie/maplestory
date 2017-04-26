@@ -16,8 +16,8 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			{ test: /\.png$/, loader: 'url-loader?limit=20480&name=/dist/assets/[hash].[ext]' },
-			{ test: /\.jpg|\.svg|\.mp3$/, loader: 'file-loader?name=./dist/assets/[hash].[ext]' },
+			{ test: /\.png$/, loader: 'url-loader?limit=20480&name=/maplestory/dist/assets/[hash].[ext]' },
+			{ test: /\.jpg|\.svg|\.mp3$/, loader: 'file-loader?name=/maplestory/dist/assets/[hash].[ext]' },
 			{ test: /\.tsx?$/, loaders: ['ts-loader'] },
 			{ test: /pixi.js|p2.js/, loader: "script-loader" }
 		]
