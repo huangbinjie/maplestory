@@ -1,7 +1,7 @@
 import * as Phaser from "phaser"
 
 export default class User extends Phaser.Sprite {
-	private curAction = "stand"
+	public curAction = "stand"
 	namestyle = {
 		font: "bold 12px Arial",
 		fill: "#fff",
@@ -36,14 +36,12 @@ export default class User extends Phaser.Sprite {
 		this.scale.x = 1
 		this.children[0].scale.x = 1
 		this.animations.play('walk')
-		this.curAction = "walk"
 	}
 	moveRight() {
 		this.body.velocity.x = 100
 		this.scale.x = -1
 		this.children[0].scale.x = -1
 		this.animations.play('walk')
-		this.curAction = "walk"
 	}
 	down() {
 		//没有做趴下的动画
@@ -53,12 +51,19 @@ export default class User extends Phaser.Sprite {
 		this.rotation = 0
 		this.body.velocity.x = 0
 		this.animations.play('stand')
-		this.curAction = "stand"
 	}
 	jump() {
-		if (this.curAction === "jump") return
+		if (!this.body.touching.down) return
 		this.body.velocity.y = -300;
 		this.animations.play('jump')
-		this.curAction = "jump"
+	}
+	do() {
+		switch (this.curAction) {
+			case "left": return this.moveLeft()
+			case "right": return this.moveRight()
+			case "stand": return this.stand()
+			case "jump": return this.jump()
+			default: this.stand()
+		}
 	}
 }

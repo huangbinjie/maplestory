@@ -22,13 +22,13 @@ function preload() {
 	game.load.image("sky", require('../assets/sky.png'))
 }
 const global: {
-	behaviors: { user: number, action: "jump" | "left" | "right" | "stand" }[],
+	behaviorQueue: { user: number, action: "jump" | "left" | "right" | "stand" }[],
 	cursors?: Phaser.CursorKeys,
 	platformGroup?: Phaser.Group,
 	userGroup?: Phaser.Group,
-	userList: Phaser.Sprite[],
-	online?: Phaser.Text
-} = { behaviors: [], userList: [] }
+	online?: Phaser.Text,
+	my?: Phaser.Sprite
+} = { behaviorQueue: [] }
 function create() {
 	//开启物理引擎ninja or arcade
 	game.physics.startSystem(Phaser.Physics.ARCADE)
@@ -57,58 +57,57 @@ function create() {
 		global.platformGroup.add(road)
 	}
 	//添加玩家
-	const my = new User(game, game.world.randomX, game.world.height - 106, "你", 1)
-	game.camera.follow(my)
-	global.userGroup.addChild(my)
-	const behavior = { user: 1, action: "stand" }
-	global.behaviors.push(behavior as any)
-	// 鼠标
-	const cursors = game.input.keyboard.createCursorKeys();
-	game.input.keyboard.onDownCallback = function (e: KeyboardEvent) {
-		if (my.body.touching.down) {
-			if (cursors.left.isDown) {
-				behavior.action = "left"
-			}
-			else if (cursors.up.isDown) {
-				behavior.action = "jump"
-			}
-			else if (cursors.right.isDown) {
-				behavior.action = "right"
-			} else {
-				behavior.action = "stand"
-			}
-		}
-	}
-	// game.input.keyboard.onUpCallback = function (e: KeyboardEvent) {
-	// 	behavior.action = "stand"
-	// }
+	global.my = new User(game, game.world.randomX, game.world.height - 106, "你", 1)
+	game.camera.follow(global.my)
+	global.userGroup.addChild(global.my)
+	// global.behaviors.push({ user: 1, action: "stand" })
+	// 方向键
+	global.cursors = game.input.keyboard.createCursorKeys();
 }
 
 function update() {
+	// 碰撞检测
 	game.physics.arcade.collide(global.userGroup, global.platformGroup)
+	// 触发各种行为，添加到队列
+	const { my, cursors } = global
+	if (my && cursors && my.body.touching.down) {
+		if (cursors.left.isDown) {
+			global.behaviorQueue.push({ user: 1, action: "left" })
+		} else if (cursors.right.isDown) {
+			global.behaviorQueue.push({ user: 1, action: "right" })
+		} else {
+			global.behaviorQueue.push({ user: 1, action: "stand" })
+		}
+	}
 
-	for (let behavior of global.behaviors) {
+	if (my && cursors && cursors.up.isDown) {
+		global.behaviorQueue.push({ user: 1, action: "jump" })
+	}
+
+	// 处理队列里的各种行为
+	for (let behavior of global.behaviorQueue) {
+		console.log(behavior.action)
 		const user = global.userGroup!.children.find((user: User) => user.id === behavior.user) as User
 		if (!user) continue
 		if (behavior.action === "left") {
-			user.moveLeft()
+			user.curAction = "left"
 		}
-
 		else if (behavior.action === "right") {
-			user.moveRight()
+			user.curAction = "right"
 		}
-
 		else if (behavior.action === "jump") {
-			user.jump()
+			user.curAction = "jump"
+		}
+		else if (behavior.action === "stand") {
+			user.curAction = "stand"
+		} else {
+			user.curAction = "stand"
 		}
 
-		else if (behavior.action === "stand") {
-			user.stand()
-		}
-		// game.input.keyboard.onDownCallback = function () {
-		// 	if (behavior.action === "jump" && user.body.touching.down) {
-		// 		user.body.velocity.y = -300;
-		// 	}
-		// }
+		global.behaviorQueue.shift()
+	}
+
+	for (let user of global.userGroup!.children as User[]) {
+		user.do()
 	}
 }
